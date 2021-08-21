@@ -30,12 +30,11 @@ func SendTelegramMessage(token, chatID, text string) (*http.Response, error) {
 		return nil, err
 	}
 
-	resp, err := http.Post(
+	return http.Post(
 		fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", token),
 		"Content-Type: application/json",
 		bytes.NewBuffer(data),
 	)
-	return resp, err
 }
 
 func DefaultMessageTemplate(title, from, level, detail string) string {
