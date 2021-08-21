@@ -5,30 +5,28 @@ import (
 	"testing"
 )
 
-func TestSendSMTPMessage(t *testing.T) {
-
+func TestSMTPMessageSender(t *testing.T) {
 	subject := `hello`
 	content := `hello world`
-	err := SendSMTPMessage(
+	sendMail := SMTPMessageSender(
 		os.Getenv("EMAIL_HOST"),
 		os.Getenv("EMAIL_PASSWORD"),
 		os.Getenv("EMAIL_FROM"),
 		os.Getenv("EMAIL_TO"),
-		subject,
-		content,
 	)
+	err := sendMail(subject, content)
 	if err != nil {
 		t.Fatal(err)
 	}
 }
 
-func TestSendTelegramMessage(t *testing.T) {
+func TestTelegramMessageSender(t *testing.T) {
 	text := "hello world"
-	if _, err := SendTelegramMessage(
+	sendTG := TelegramMessageSender(
 		os.Getenv("TELEGRAM_TOKEN"),
 		os.Getenv("TELEGRAM_CHATID"),
-		text,
-	); err != nil {
+	)
+	if _, err := sendTG(text); err != nil {
 		t.Fatal(err)
 	}
 
