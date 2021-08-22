@@ -32,10 +32,10 @@ func SetFileStem(src, stem string) string {
 func SetFileSuffix(src, suffix string) string {
 	ext := filepath.Ext(src)
 	if ext == suffix {
-		return src
+		return filepath.Clean(src)
 	}
 	if ext == "" {
-		return fmt.Sprintf("%s%s", src, suffix)
+		return filepath.Clean(fmt.Sprintf("%s%s", src, suffix))
 	}
 	return SetFileName(src, fmt.Sprintf("%s%s", GetFileStem(src), suffix))
 }

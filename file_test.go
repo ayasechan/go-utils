@@ -46,14 +46,14 @@ func TestSetFileStem(t *testing.T) {
 func TestSetFileSuffix(t *testing.T) {
 	suffix := ".txt"
 	data := map[string]string{
-		"./foo":         "./foo.txt",
+		"./foo":         "foo.txt",
 		"../../foo.txt": "../../foo.txt",
 		".././/foo.py":  "../foo.txt",
 	}
 	for k, v := range data {
 		r := SetFileSuffix(k, suffix)
 		if r != v {
-			t.Fatal(r)
+			t.Fatalf("src: %s suffix: %s", k, r)
 		}
 	}
 }
