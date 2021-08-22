@@ -28,6 +28,7 @@ func SetFileStem(src, stem string) string {
 // Return a new path with the suffix changed.
 // If the original path doesn’t have a suffix, the new suffix is appended instead.
 // If the suffix is an empty string, the original suffix is removed.
+// suffix should start with dot!
 func SetFileSuffix(src, suffix string) string {
 	ext := filepath.Ext(src)
 	if ext == suffix {
