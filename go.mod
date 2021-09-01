@@ -1,4 +1,4 @@
-module go-utils
+module github.com/ayasechan/go-utils
 
 go 1.17
 
